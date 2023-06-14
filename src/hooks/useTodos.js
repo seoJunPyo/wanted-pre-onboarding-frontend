@@ -6,9 +6,13 @@ const useTodos = () => {
 
 	React.useEffect(() => {
 		(async () => {
-			const { data } = await getTodos();
+			try {
+				const { data } = await getTodos();
 
-			setTodos(data);
+				setTodos(data);
+			} catch (e) {
+				alert(e.response.data.message);
+			}
 		})();
 	}, []);
 
